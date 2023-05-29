@@ -2,7 +2,7 @@
 /*http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=dd6c3ba86f66f547459582b843e14bc8 */
 const APIKey = '&appid=dd6c3ba86f66f547459582b843e14bc8';
 const baseURL = 'http://api.openweathermap.org/data/2.5/forecast?id=';
-const port = 8091;
+const serverURL = 'http://localhost:8051'
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -47,7 +47,7 @@ const postData = async ( url = '', data = {})=>{
 };
 
 const upDateUI = async ()=>{
-    const dataRecieved = await fetch('/all');
+    const dataRecieved = await fetch(`${serverURL}/all`);
     try {
         const response = await dataRecieved.json();
         document.getElementById('date').textContent = response.date;
@@ -73,7 +73,7 @@ function performAction() {
             console.log(temp);
             console.log(userResp);
             console.log(cityName);
-            postData ('/dataPost',{cityName:cityName,temp:temp,date:newDate,userResp:userResp})
+            postData (`${serverURL}/dataPost`,{cityName:cityName,temp:temp,date:newDate,userResp:userResp})
         }
     )
     .then(
