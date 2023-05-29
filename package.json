@@ -3,7 +3,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server/server.js",
     "build": "webpack",
-    "build-dev": "webpack --config webpack.dev.js"
+    "build-dev": "webpack-dev-server --config webpack.dev.js --open --port 8085"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
