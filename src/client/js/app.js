@@ -4,6 +4,11 @@ const APIKey = '&appid=dd6c3ba86f66f547459582b843e14bc8';
 const baseURL = 'http://api.openweathermap.org/data/2.5/forecast?id=';
 const serverURL = 'http://localhost:8091'
 
+//geonames:
+const cityName = 'Boston'; // Replace with the name of the city you want to get the latitude for
+//const geonamesURL = `http://api.geonames.org/searchJSON?q=${cityName}&maxRows=1&username=marcelomsilveira`
+const geonamesURL = `http://api.geonames.org/siblingsJSON?geonameId=3017382&username=MarceloMSilveira`
+
 // Create a new date instance dynamically with JS
 let d = new Date();
 
@@ -11,7 +16,17 @@ let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // begining
 
-const getData = async (baseURL, userZipCode,APIKey) => {
+const getData = async () =>
+   {
+        fetch(geonamesURL)
+        .then(response => response.json())
+        .then(data => {
+            const name = data.geonames[1].name;
+            console.log(name); // This will log the latitude of the city to the console
+        })
+        .catch(error => console.log(error));
+   }
+/*const getData = async (baseURL, userZipCode,APIKey) => {
     const fullURL = baseURL+userZipCode+APIKey;
     const response = await fetch(fullURL);
     
@@ -23,7 +38,7 @@ const getData = async (baseURL, userZipCode,APIKey) => {
     catch (error) {
         console.log('Error: ', error);
     }
-}
+}*/
 
 const postData = async ( url = '', data = {})=>{
     console.log(data);
@@ -62,9 +77,9 @@ const upDateUI = async ()=>{
 }
 
 function performAction() {
-    const userZipCode = document.getElementById('zip').value;
-    getData(baseURL, userZipCode,APIKey)
-    .then(
+    //const userZipCode = document.getElementById('zip').value;
+    getData()
+    /*.then(
         (receivedData)=>{ 
             const userResp = document.getElementById('feelings').value;
             const temp = receivedData.list[0].main.temp;
@@ -80,7 +95,7 @@ function performAction() {
         (receivedData)=>{
             upDateUI(receivedData);
         }
-    )
+    )*/
 }
 
 export {performAction}
