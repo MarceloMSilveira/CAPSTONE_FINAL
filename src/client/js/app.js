@@ -6,7 +6,7 @@ const serverURL = 'http://localhost:8091'
 
 //geonames:
 const cityName = 'Boston'; // Replace with the name of the city you want to get the latitude for
-const geonamesURL = `http://api.geonames.org/searchJSON?q=miami&username=marcelomsilveira`
+//const geonamesURL = `http://api.geonames.org/searchJSON?q=miami&username=marcelomsilveira`
 //const geonamesURL = `http://api.geonames.org/siblingsJSON?geonameId=3017382&username=MarceloMSilveira`
 
 // Create a new date instance dynamically with JS
@@ -16,13 +16,17 @@ let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // begining
 
-const getData = async () =>
+const getData = async (city) =>
    {
+        const geonamesURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=marcelomsilveira`
         fetch(geonamesURL)
         .then(response => response.json())
         .then(data => {
             const name = data.geonames[0].name;
             console.log(name); // This will log the name of the city to the console
+            console.log(data.geonames[0].lat);
+            console.log(data.geonames[0].lng);
+            console.log(data.geonames[0].countryName);
         })
         .catch(error => console.log(error));
    }
@@ -77,8 +81,9 @@ const upDateUI = async ()=>{
 }
 
 function performAction() {
-    //const userZipCode = document.getElementById('zip').value;
-    getData()
+    const userCity = document.getElementById('city').value;
+    const userCityUTF8 = encodeURIComponent(userCity)
+    getData(userCityUTF8)
     /*.then(
         (receivedData)=>{ 
             const userResp = document.getElementById('feelings').value;
