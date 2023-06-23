@@ -41,7 +41,13 @@ body{
 }
 
 .headline {
-
+    font-size: 2em;
+    color:chartreuse;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #22b2da;
 }
 .title{
 
