@@ -17,32 +17,20 @@ let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 // begining
 
 const getData = async (city) =>
-   {
-        const geonamesURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=marcelomsilveira`
-        fetch(geonamesURL)
-        .then(response => response.json())
-        .then(data => {
-            const name = data.geonames[0].name;
-            console.log(name); // This will log the name of the city to the console
-            console.log(data.geonames[0].lat);
-            console.log(data.geonames[0].lng);
-            console.log(data.geonames[0].countryName);
-        })
-        .catch(error => console.log(error));
-   }
-/*const getData = async (baseURL, userZipCode,APIKey) => {
-    const fullURL = baseURL+userZipCode+APIKey;
-    const response = await fetch(fullURL);
-    
-    try {
-        const newData = await response.json();
-        console.log(newData);
-        return newData;
-    }
-    catch (error) {
-        console.log('Error: ', error);
-    }
-}*/
+{
+    const geonamesURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=marcelomsilveira`
+    fetch(geonamesURL)
+    .then(response => response.json())
+    .then(data => {
+        const name = data.geonames[0].name;
+        console.log(name); // This will log the name of the city to the console
+        console.log(data.geonames[0].lat);
+        console.log(data.geonames[0].lng);
+        console.log(data.geonames[0].countryName);
+        return data;
+    })
+    .catch(error => console.log(error));
+}
 
 const postData = async ( url = '', data = {})=>{
     console.log(data);
