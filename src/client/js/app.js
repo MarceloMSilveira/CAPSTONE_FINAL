@@ -16,18 +16,26 @@ let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // begining
 
+const goWeatherBit = async(data) => {
+    const lat = data.geonames[0].lat;
+    const lng = data.geonames[0].lng;
+    const weatherBitURL = ;
+    fetch ()
+}
+
 const getData = async (city) =>
 {
     const geonamesURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=marcelomsilveira`
     fetch(geonamesURL)
     .then(response => response.json())
     .then(data => {
-        const name = data.geonames[0].name;
-        console.log(name); // This will log the name of the city to the console
-        console.log(data.geonames[0].lat);
-        console.log(data.geonames[0].lng);
-        console.log(data.geonames[0].countryName);
-        return data;
+        goWeatherBit(data)
+        //const name = data.geonames[0].name;
+        //console.log(name); // This will log the name of the city to the console
+        //console.log(data.geonames[0].lat);
+        //console.log(data.geonames[0].lng);
+        //console.log(data.geonames[0].countryName);
+        
     })
     .catch(error => console.log(error));
 }
@@ -72,23 +80,6 @@ function performAction() {
     const userCity = document.getElementById('city').value;
     const userCityUTF8 = encodeURIComponent(userCity)
     getData(userCityUTF8)
-    /*.then(
-        (receivedData)=>{ 
-            const userResp = document.getElementById('feelings').value;
-            const temp = receivedData.list[0].main.temp;
-            const cityName = receivedData.city.name;
-            console.log(newDate);
-            console.log(temp);
-            console.log(userResp);
-            console.log(cityName);
-            postData (`${serverURL}/dataPost`,{cityName:cityName,temp:temp,date:newDate,userResp:userResp})
-        }
-    )
-    .then(
-        (receivedData)=>{
-            upDateUI(receivedData);
-        }
-    )*/
 }
 
 export {performAction}
