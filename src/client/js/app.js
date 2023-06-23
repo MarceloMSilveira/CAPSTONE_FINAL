@@ -1,22 +1,12 @@
-/* Global Variables */
-/*http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=dd6c3ba86f66f547459582b843e14bc8 */
-const APIKey = '&appid=dd6c3ba86f66f547459582b843e14bc8';
-const baseURL = 'http://api.openweathermap.org/data/2.5/forecast?id=';
-const serverURL = 'http://localhost:8091'
-
-//geonames:
-const cityName = 'Boston'; // Replace with the name of the city you want to get the latitude for
-//const geonamesURL = `http://api.geonames.org/searchJSON?q=miami&username=marcelomsilveira`
-//const geonamesURL = `http://api.geonames.org/siblingsJSON?geonameId=3017382&username=MarceloMSilveira`
-
-// Create a new date instance dynamically with JS
-let d = new Date();
-
-let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
-
-// begining
 
 const goWeatherBit = async(data) => {
+    // how many days is the trip from now (calculating)
+    const currentDate = new Date();
+    const tripDate = document.getElementById('tripDate').value;
+    const diffTime = Math.abs(tripDate - currentDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    console.log(`Your travel is ${diffDays} days from now!`);
+    
     const lat = data.geonames[0].lat;
     const lng = data.geonames[0].lng;
     const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=7dda27a7c2bf4cd0a4d3dc99beb71978&include=minutely`;
@@ -24,6 +14,7 @@ const goWeatherBit = async(data) => {
     .then(res => res.json())
     .then(resp => {
         console.log(`Return of weatherbit: ${resp.data[0].valid_date}, ${resp.data[1].valid_date}`)
+        console.log(`Your travel is ${diffDays} days from now!`);
     })
 }
 
