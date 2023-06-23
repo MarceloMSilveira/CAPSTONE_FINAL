@@ -20,8 +20,14 @@ body{
 
 }
 
+.feel{
+        height: 2em;
+        width: 2em;
+}
+
 .entry{
     background: rgba(59, 74, 107, .4);
+    margin: 1em;
 }
 
 #entryHolder{
@@ -71,14 +77,13 @@ input{
 }
 
 button{
-    width: 400px;
-    height: 100px;
     background: #3b4a6b;
     color: #f0d43a;
     font-size: 26px;
     font-family: 'Oswald', sans-serif;
     border: none;
     box-shadow: 2px 4px 5px #444;
+    padding: .5em;
 }
 h1{
     font-size: 36px;
