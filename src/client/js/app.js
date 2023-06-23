@@ -22,7 +22,9 @@ const goWeatherBit = async(data) => {
     const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=7dda27a7c2bf4cd0a4d3dc99beb71978&include=minutely`;
     fetch (weatherBitURL)
     .then(res => res.json())
-    .then(data => console.log(`Return of weatherbit: ${data.city_name}`))
+    .then(resp => {
+        console.log(`Return of weatherbit: ${resp.data[0].valid_date}, ${resp.data[1].valid_date}`)
+    })
 }
 
 const getData = async (city) =>
