@@ -1,0 +1,21 @@
+{
+    "city_name":"Juiz de Fora",
+    "country_code":"BR",
+    "data":
+        [
+            {"app_max_temp":71.2,"app_min_temp":57.2,"clouds":85,"clouds_hi":75,"clouds_low":73,"clouds_mid":85,"datetime":"2023-05-31","dewpt":59.4,"high_temp":65.8,"low_temp":60.1,"max_dhi":null,"max_temp":71.1,"min_temp":57.1,"moon_phase":0.901377,"moon_phase_lunation":0.42,"moonrise_ts":1685554689,"moonset_ts":1685515164,"ozone":260.8,"pop":60,"precip":0.189,"pres":937.7,"rh":87,"slp":1020.4,"snow":0,"snow_depth":0,"sunrise_ts":1685524911,"sunset_ts":1685563998,"temp":63.4,"ts":1685516460,"uv":2,"valid_date":"2023-05-31","vis":12.8,"weather":{"icon":"r01d","description":"Light rain","code":500},"wind_cdir":"E","wind_cdir_full":"east","wind_dir":98,"wind_gust_spd":4.9,"wind_spd":4},
+            
+            {"app_max_temp":77.6,"app_min_temp":60.1,"clouds":57,"clouds_hi":0,"clouds_low":24,"clouds_mid":0,"datetime":"2023-06-01","dewpt":59,"high_temp":77.5,"low_temp":58.5,"max_dhi":null,"max_temp":77.5,"min_temp":60.1,"moon_phase":0.957903,"moon_phase_lunation":0.45,"moonrise_ts":1685643271,"moonset_ts":1685605116,"ozone":266.6,"pop":0,"precip":0,"pres":937,"rh":79,"slp":1019.6,"snow":0,"snow_depth":0,"sunrise_ts":1685611336,"sunset_ts":1685650393,"temp":66,"ts":1685588460,"uv":4.9,"valid_date":"2023-06-01","vis":13.9,"weather":{"icon":"c03d","description":"Broken clouds","code":803},"wind_cdir":"SW","wind_cdir_full":"southwest","wind_dir":232,"wind_gust_spd":4,"wind_spd":4},
+            
+            {"app_max_temp":77.9,"app_min_temp":58.5,"clouds":36,"clouds_hi":0,"clouds_low":42,"clouds_mid":0,"datetime":"2023-06-02","dewpt":56.6,"high_temp":78.1,"low_temp":57.7,"max_dhi":null,"max_temp":78.1,"min_temp":58.5,"moon_phase":0.991583,"moon_phase_lunation":0.49,"moonrise_ts":1685732154,"moonset_ts":1685695313,"ozone":264.9,"pop":0,"precip":0,"pres":937.7,"rh":74,"slp":1020.5,"snow":0,"snow_depth":0,"sunrise_ts":1685697761,"sunset_ts":1685736788,"temp":65.6,"ts":1685674860,"uv":5.1,"valid_date":"2023-06-02","vis":11.5,"weather":{"icon":"c02d","description":"Scattered clouds","code":802},"wind_cdir":"SSW","wind_cdir_full":"south-southwest","wind_dir":196,"wind_gust_spd":3.4,"wind_spd":3.4},
+            
+            {"app_max_temp":78.6,"app_min_temp":57.7,"clouds":22,"clouds_hi":0,"clouds_low":28,"clouds_mid":0,"datetime":"2023-06-03","dewpt":55.5,"high_temp":79,"low_temp":58.3,"max_dhi":null,"max_temp":79,"min_temp":57.7,"moon_phase":0.998126,"moon_phase_lunation":0.52,"moonrise_ts":1685821439,"moonset_ts":1685785692,"ozone":259.6,"pop":20,"precip":0.002,"pres":938.7,"rh":70,"slp":1021.7,"snow":0,"snow_depth":0,"sunrise_ts":1685784185,"sunset_ts":1685823185,"temp":66.1,"ts":1685761260,"uv":4.6,"valid_date":"2023-06-03","vis":15,"weather":{"icon":"c02d","description":"Scattered clouds","code":802},"wind_cdir":"S","wind_cdir_full":"south","wind_dir":181,"wind_gust_spd":2.9,"wind_spd":2.9},
+            
+            {"app_max_temp":79.6,"app_min_temp":58.3,"clouds":9,"clouds_hi":0,"clouds_low":1,"clouds_mid":0,"datetime":"2023-06-04","dewpt":55.8,"high_temp":79.9,"low_temp":58.5,"max_dhi":null,"max_temp":79.9,"min_temp":58.3,"moon_phase":0.975233,"moon_phase_lunation":0.55,"moonrise_ts":1685911186,"moonset_ts":1685876090,"ozone":262.1,"pop":0,"precip":0,"pres":939.4,"rh":68,"slp":1022.4,"snow":0,"snow_depth":0,"sunrise_ts":1685870609,"sunset_ts":1685909582,"temp":67.2,"ts":1685847660,"uv":5.6,"valid_date":"2023-06-04","vis":15,"weather":{"icon":"c02d","description":"Few clouds","code":801},"wind_cdir":"SSW","wind_cdir_full":"south-southwest","wind_dir":201,"wind_gust_spd":2.5,"wind_spd":2.5}
+        ],
+        
+        "lat":-21.7642,
+        "lon":-43.3503,
+        "state_code":"15",
+        "timezone":"America/Sao_Paulo"
+    }
