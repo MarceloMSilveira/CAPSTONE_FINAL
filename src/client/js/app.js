@@ -19,7 +19,7 @@ let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 const goWeatherBit = async(data) => {
     const lat = data.geonames[0].lat;
     const lng = data.geonames[0].lng;
-    const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&${lng}&key=7dda27a7c2bf4cd0a4d3dc99beb71978&include=minutely`;
+    const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lng=${lon}&key=7dda27a7c2bf4cd0a4d3dc99beb71978&include=minutely`;
     fetch (weatherBitURL)
     .then(res => res.json())
     .then(data => console.log(`Return of weatherbit: ${data.city_Name}`))
