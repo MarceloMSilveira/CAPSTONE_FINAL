@@ -2,11 +2,11 @@
 const goWeatherBit = async(data) => {
     // how many days is the trip from now (calculating)
     const currentDate = new Date();
-    const tripDate = document.getElementById('tripDate').value;
+    const tripDate = new Date(document.getElementById('tripDate').value);
     const diffTime = Math.abs(tripDate - currentDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    console.log(`Your travel is ${diffDays} days from now!`);
     
+    // place's coordinates
     const lat = data.geonames[0].lat;
     const lng = data.geonames[0].lng;
     const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=7dda27a7c2bf4cd0a4d3dc99beb71978&include=minutely`;
