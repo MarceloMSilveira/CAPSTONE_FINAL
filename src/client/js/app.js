@@ -1,5 +1,9 @@
 
 const goWeatherBit = async(data) => {
+    // place's coordinates
+    const lat = data.geonames[0].lat;
+    const lng = data.geonames[0].lng;
+    
     // how many days is the trip from now (calculating)
     const currentDate = new Date();
     const tripDate = new Date(document.getElementById('tripDate').value);
@@ -9,18 +13,18 @@ const goWeatherBit = async(data) => {
     //decide if travel will be next week
 
     if (diffDays>7) 
-        predictedForecast(tripDate)
+        predictedForecast(tripDate, lat, lng)
     else 
-        currentWeather()
+        currentWeather(lat, lng)
     
-    // place's coordinates
-    const lat = data.geonames[0].lat;
-    const lng = data.geonames[0].lng;
-    const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=7dda27a7c2bf4cd0a4d3dc99beb71978&include=minutely`;
+}
+
+function currentWeather (lat, lon) {
+    const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=7dda27a7c2bf4cd0a4d3dc99beb71978&include=minutely`;
     fetch (weatherBitURL)
     .then(res => res.json())
     .then(resp => {
-        console.log(`Return of weatherbit: ${resp.data[0].valid_date}, ${resp.data[1].valid_date}`)
+        console.log(`Return of weatherbit: ${resp.data[0].valid_date}, ${resp.data[1].valid_date}, ${resp.data[2].valid_date}`)
         console.log(`Your travel is ${diffDays} days from now!`);
     })
 }
