@@ -5,6 +5,13 @@ const goWeatherBit = async(data) => {
     const tripDate = new Date(document.getElementById('tripDate').value);
     const diffTime = Math.abs(tripDate - currentDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+    //decide if travel will be next week
+
+    if (diffDays>7) 
+        predictedForecast(tripDate)
+    else 
+        currentWeather()
     
     // place's coordinates
     const lat = data.geonames[0].lat;
