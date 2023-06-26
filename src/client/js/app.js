@@ -51,25 +51,27 @@ const getGeonamesData = async (city) =>
     .catch(error => console.log(error));
 }
 
-const getPixabayData = async (city) =>
+const getPixabayData = async (userCity,city) =>
 {
     const pixabayURL = `https://pixabay.com/api/?key=36921349-37b715f1fda946c5428d9d405&q=${city}+tourism&image_type=photo&category=travel`
     fetch(pixabayURL)
     .then(response => response.json())
-    .then(data => getImage(data))
+    .then(data => getImage(userCity,data))
     .catch(error => console.log(error));
 }
 
-function getImage(pixabayResponse) {
+function getImage(userCity,pixabayResponse) {
     // div element acess
     const divElement = document.getElementById('imgFromPixabay');
     const imgElement = document.createElement('img');
 
     // src of image link to pixabayResp
-    imgElement.src = pixabayResponse.hits[0].pageURL;
-
+    imgElement.src = pixabayResponse.hits[0].webformatURL;
+   
     imgElement.alt = `image of ${userCity}`;
+    imgElement.width = 300;
     
+    divElement.innerHTML = '';
     divElement.appendChild(imgElement);
 }
 
@@ -112,7 +114,7 @@ function performAction() {
     const userCity = document.getElementById('city').value;
     const userCityUTF8 = encodeURIComponent(userCity)
     getGeonamesData(userCityUTF8)
-    getPixabayData(userCityUTF8)
+    getPixabayData(userCity,userCityUTF8)
 }
 
 export {performAction}
