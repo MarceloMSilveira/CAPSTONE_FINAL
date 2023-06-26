@@ -9,7 +9,7 @@ const goWeatherBit = async(data) => {
     const tripDate = new Date(document.getElementById('tripDate').value);
     const diffTime = Math.abs(tripDate - currentDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    console.log(`Your travel is ${diffDays} days from now!`);
+    document.getElementById('when').innerHTML=`Your travel is ${diffDays} days from now!`;
 
     //decide if travel will be next week
 
@@ -25,7 +25,8 @@ function currentWeather (lat, lon) {
     fetch (weatherBitURL)
     .then(res => res.json())
     .then(resp => {
-        console.log(`The current weather in ${resp.data[0].city_name} is ${resp.data[0].weather.description} Temperature: ${resp.data[0].temp}`)
+        const msg = `The current weather in ${resp.data[0].city_name} is ${resp.data[0].weather.description} Temperature: ${resp.data[0].temp}`;
+        document.getElementById('result').innerHTML = msg;
     })
 }
 
@@ -35,7 +36,9 @@ function nextWeekForecast (lat, lon) {
     fetch (weatherBitURL)
     .then(res => res.json())
     .then(resp => {
-        console.log(`The forecast (next week) weather in ${resp.city_name} is ${resp.data[6].weather.description}, HIGH:${resp.data[6].high_temp} LOW:${resp.data[6].low_temp} `)
+        const msg = `The forecast (next week) weather in ${resp.city_name} is ${resp.data[6].weather.description}, HIGH:${resp.data[6].high_temp} LOW:${resp.data[6].low_temp}`;
+        document.getElementById('result').innerHTML = msg;
+
     })
 }
 
