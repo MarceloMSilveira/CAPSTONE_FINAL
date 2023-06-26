@@ -9,23 +9,33 @@ const goWeatherBit = async(data) => {
     const tripDate = new Date(document.getElementById('tripDate').value);
     const diffTime = Math.abs(tripDate - currentDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    console.log(`Your travel is ${diffDays} days from now!`);
 
     //decide if travel will be next week
 
     if (diffDays>7) 
-        predictedForecast(tripDate, lat, lng)
+        nextWeekForecast(lat, lng)
     else 
         currentWeather(lat, lng)
     
 }
 
 function currentWeather (lat, lon) {
-    const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=7dda27a7c2bf4cd0a4d3dc99beb71978&include=minutely`;
+    const weatherBitURL = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=7dda27a7c2bf4cd0a4d3dc99beb71978`;
     fetch (weatherBitURL)
     .then(res => res.json())
     .then(resp => {
-        console.log(`Return of weatherbit: ${resp.data[0].valid_date}, ${resp.data[1].valid_date}, ${resp.data[2].valid_date}`)
-        console.log(`Your travel is ${diffDays} days from now!`);
+        console.log(`The current weather in ${resp.data[0].city_name} is ${resp.data[0].weather.description} Temperature: ${resp.data[0].temp}`)
+    })
+}
+
+//unfortunately it is not possible to get the weather history with the free version, so I used the forecast for the next week 
+function nextWeekForecast (lat, lon) {
+    const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=7dda27a7c2bf4cd0a4d3dc99beb71978`;
+    fetch (weatherBitURL)
+    .then(res => res.json())
+    .then(resp => {
+        console.log(`The forecast (next week) weather in ${resp.city_name} is ${resp.data[6].weather.description}, HIGH:${resp.data[6].high_temp} LOW:${resp.data[6].low_temp} `)
     })
 }
 
