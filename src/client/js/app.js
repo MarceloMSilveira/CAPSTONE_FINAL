@@ -42,21 +42,35 @@ function nextWeekForecast (lat, lon) {
     })
 }
 
-const getData = async (city) =>
+const getGeonamesData = async (city) =>
 {
     const geonamesURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=marcelomsilveira`
     fetch(geonamesURL)
     .then(response => response.json())
-    .then(data => {
-        goWeatherBit(data)
-        //const name = data.geonames[0].name;
-        //console.log(name); // This will log the name of the city to the console
-        //console.log(data.geonames[0].lat);
-        //console.log(data.geonames[0].lng);
-        //console.log(data.geonames[0].countryName);
-        
-    })
+    .then(data => goWeatherBit(data))
     .catch(error => console.log(error));
+}
+
+const getPixabayData = async (city) =>
+{
+    const pixabayURL = `https://pixabay.com/api/?key=36921349-37b715f1fda946c5428d9d405&q=${city}+tourism&image_type=photo&category=travel`
+    fetch(pixabayURL)
+    .then(response => response.json())
+    .then(data => getImage(data))
+    .catch(error => console.log(error));
+}
+
+function getImage(pixabayResponse) {
+    // div element acess
+    const divElement = document.getElementById('imgFromPixabay');
+    const imgElement = document.createElement('img');
+
+    // src of image link to pixabayResp
+    imgElement.src = pixabayResponse.hits[0].pageURL;
+
+    imgElement.alt = `image of ${userCity}`;
+    
+    divElement.appendChild(imgElement);
 }
 
 const postData = async ( url = '', data = {})=>{
@@ -88,7 +102,6 @@ const upDateUI = async ()=>{
         document.getElementById('temp').textContent = response.temp;
         document.getElementById('content').textContent = response.userResp;
         document.getElementById('cityName').textContent = response.cityName;
-
     }
     catch (error){
         console.log(error);
@@ -98,7 +111,8 @@ const upDateUI = async ()=>{
 function performAction() {
     const userCity = document.getElementById('city').value;
     const userCityUTF8 = encodeURIComponent(userCity)
-    getData(userCityUTF8)
+    getGeonamesData(userCityUTF8)
+    getPixabayData(userCityUTF8)
 }
 
 export {performAction}
