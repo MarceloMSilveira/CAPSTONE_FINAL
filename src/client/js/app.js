@@ -64,11 +64,10 @@ function getImage(userCity,pixabayResponse) {
     // Img element acess
     const imgElement = document.getElementById('imgFromPixabay');
     
-    // src of image link to pixabayResp
+    // URL of image link to pixabayResp
     const imgURL = pixabayResponse.hits[0].webformatURL;
    
-    imgElement.innerHTML = '';
-    imgElement.style.backgroundImage = url(imgURL);
+    imgElement.style.backgroundImage = `url(${imgURL})`;
 }
 
 const postData = async ( url = '', data = {})=>{
