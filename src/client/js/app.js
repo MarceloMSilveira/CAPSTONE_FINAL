@@ -61,18 +61,14 @@ const getPixabayData = async (userCity,city) =>
 }
 
 function getImage(userCity,pixabayResponse) {
-    // div element acess
-    const divElement = document.getElementById('imgFromPixabay');
-    const imgElement = document.createElement('img');
-
-    // src of image link to pixabayResp
-    imgElement.src = pixabayResponse.hits[0].webformatURL;
-   
-    imgElement.alt = `image of ${userCity}`;
-    imgElement.width = 300;
+    // Img element acess
+    const imgElement = document.getElementById('imgFromPixabay');
     
-    divElement.innerHTML = '';
-    divElement.appendChild(imgElement);
+    // src of image link to pixabayResp
+    const imgURL = pixabayResponse.hits[0].webformatURL;
+   
+    imgElement.innerHTML = '';
+    imgElement.style.backgroundImage = url(imgURL);
 }
 
 const postData = async ( url = '', data = {})=>{
