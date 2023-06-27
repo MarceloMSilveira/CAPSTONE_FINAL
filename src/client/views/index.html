@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>CAPSTONE</title>
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div id = "app">
-    <div class ="holder headline">
-    TRAVEL PLANNER
-    </div>
-    
-    <div class ="holder city">
-      <label for="city">Enter the city name here:</label>
-      <input type="text" id="city" placeholder="Enter The city name">
-      <label for="date">Enter the travel's date:</label>
-      <input type="date" id="tripDate" placeholder="Enter the travel's date">
-    </div>
-    
-    <div class ="holder feel">
-      <button id="generate" type = "submit"> Generate </button>
-    </div>
-    
-    <div id="when"></div>
-    <div id ="result"> </div>
-    <div id="imgFromPixabay"></div>
-  </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>CAPSTONE</title>
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="wholeApp">
+            <div class="header">
+                <div class="mainHeader">Travel planner</div>
+                <div class="bottonHeader">My Trips:</div>
+            </div>
+            <div class="main">
+                <div class="mainLeft">
+                    <div id="imgFromPixabay" class="image-container"></div>
+                    <div> 
+                        <input type="button" value="+my notes">
+                    </div>
+                </div>
+                <div class="mainRight">
+                    <p>NEXT TRIP - WHERE & WHEN</p>
+                    <label> City:
+                        <input type="text" id="city" placeholder="Enter The city name">
+                    </label> 
+                    <label>When:
+                        <input type="date" id="tripDate">
+                    </label>
+                    <button id="generate" type = "submit"> Generate </button>
+                </div>
+            </div>
+            <div class="botton">
+                <div id="when">When?</div>
+                <div id ="result">Forecast?</div>
+            </div>
+        </div>
+    </body>
 </html>
