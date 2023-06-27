@@ -1,10 +1,13 @@
 body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: Bangers, Montserrat;
 }
 
 label, input, button{
     font-weight: bold;
     border: none;
+}
+span{
+    text-shadow: 2px 2px 4px rgba(238, 234, 5, 0.897);
 }
 .wholeApp{
     margin: 3px;
@@ -18,7 +21,7 @@ label, input, button{
 }
 
 .main{
-    background-color: antiquewhite;
+    background-color: rgb(238, 157, 142);
     grid-area: "main";
     padding: 5px;
     display: grid;
@@ -45,6 +48,7 @@ label, input, button{
 }
 
 .bottonHeader {
+    font-family: Montserrat;
     font-weight:bold;
 }
 
@@ -64,27 +68,57 @@ label, input, button{
     background-size: cover;
     background-position: center;
 }
+
+.userNotes{
+    
+}
 .mainRight{
     grid-area: "mainRight";
     display: flex;
     flex-direction: column;
     align-items: center;   
+    justify-content: flex-start;
     gap: 5px; 
 }
 
 .botton{
+    font-family: Montserrat;
+    font-weight: bold;
     background-color:lightgray;
     padding: 1.5em;
 }
 
+.inputData{
+    font-family: Montserrat;
+    display: flex;
+    flex-direction: column;
+    align-self: left;
+    justify-content: left;
+    gap: 5px;
+}
 
-@media screen and (min-width: 600px) {
+
+@media (min-width: 600px) and (max-width: 1200px){
     .main{
         padding: 5px;
         grid-template-columns: 1fr 1fr;
-        grid-template-areas: "mainLeft mainRight";
         gap: 2px;
         flex-wrap: wrap;
+        grid-template-areas: 
+        "mainTopLeft mainTopRight"
+        "mainButtonLeft mainButtonRight";
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1200px){
+    .main{
+        padding: 5px;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        flex-wrap: wrap;
+        grid-template-areas: 
+        "mainLeft mainTopRight"
+        "mainLeft mainButtonRight";
     }
 }
 

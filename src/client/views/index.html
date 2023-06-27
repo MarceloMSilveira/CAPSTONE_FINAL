@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>CAPSTONE</title>
-        <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700|Bangers|Lobster|Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="wholeApp">
@@ -14,19 +14,21 @@
             <div class="main">
                 <div class="mainLeft">
                   <div id="imgFromPixabay" class="image-container"></div>
-                  <div> 
+                  <div class="userNotes"> 
                       <input type="button" value="+my notes">
                   </div>
                 </div>
                 <div class="mainRight">
                     <p>MY NEXT TRIP - WHERE & WHEN</p>
-                    <label> City:
-                        <input type="text" id="city" placeholder="Enter The city name">
-                    </label> 
-                    <label>When:
-                        <input type="date" id="tripDate">
-                    </label>
-                    <button id="generate" type = "submit"> Generate </button>
+                    <div class="inputData">
+                      <label> City:
+                          <input type="text" id="city" placeholder="Enter The city name">
+                      </label> 
+                      <label>When:
+                          <input type="date" id="tripDate">
+                      </label>
+                      <button id="generate" type = "submit"> Generate </button>
+                    </div>
                 </div>
             </div>
             <div class="botton">

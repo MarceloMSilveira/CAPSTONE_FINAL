@@ -36,7 +36,7 @@ function nextWeekForecast (lat, lon) {
     fetch (weatherBitURL)
     .then(res => res.json())
     .then(resp => {
-        const msg = `The forecast (next week) weather in ${resp.city_name} is ${resp.data[6].weather.description}, HIGH:${resp.data[6].high_temp} LOW:${resp.data[6].low_temp}`;
+        const msg = `The forecast (next week) weather in ${resp.city_name} is ${resp.data[6].weather.description}, <span>HIGH:</span>${resp.data[6].high_temp} <span>LOW:</span>${resp.data[6].low_temp}`;
         document.getElementById('result').innerHTML = msg;
 
     })
@@ -68,6 +68,7 @@ function getImage(userCity,pixabayResponse) {
     const imgURL = pixabayResponse.hits[0].webformatURL;
    
     imgElement.style.backgroundImage = `url(${imgURL})`;
+    imgElement.ariaLabel = `image of ${userCity}`
 }
 
 const postData = async ( url = '', data = {})=>{
