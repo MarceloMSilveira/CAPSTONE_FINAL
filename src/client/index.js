@@ -7,4 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     generateButton.addEventListener('click', performAction);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const generateButton = document.getElementById('changeImg');
+    generateButton.addEventListener('click', performAction);
+});
+
 export {performAction}
