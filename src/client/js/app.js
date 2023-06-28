@@ -91,12 +91,22 @@ function getImage(place,pixabayResponse) {
     
     // URL of image link to pixabayResp
     const numberOfImg = pixabayResponse.total;
-    const randomImgIndex = Math.floor(Math.random() * (numberOfImg) + 1);
-    console.log(`Nr of img of ${place}: ${numberOfImg}. Index of choosed img: ${randomImgIndex-1}`)
-    const imgURL = pixabayResponse.hits[randomImg-1].webformatURL;
+    
+    const randomImgIndex = validateWebURL(pixabayResponse,numberOfImg)
+    
+    console.log(`Nr of img of ${place}: ${numberOfImg}. Index of choosed img: ${randomImgIndex}`)
+    const imgURL = pixabayResponse.hits[randomImgIndex].webformatURL;
     imgElement.style.backgroundImage = `url(${imgURL})`;
     imgElement.ariaLabel = `image of ${place}`
     document.getElementById('myTrip').innerHTML = `Take a look at ${place}:`
+}
+
+function validateWebURL (pixabayResponse,numberOfImg){
+    const randomImgIndex = Math.floor(Math.random() * (numberOfImg) + 1);
+    while (!(pixabayResponse.hits[randomImgIndex-1].webformatURL)) {
+        randomImgIndex = Math.floor(Math.random() * (numberOfImg) + 1)
+    }
+    return randomImgIndex-1;
 }
 
 function unknowCity(cityUTF8){
