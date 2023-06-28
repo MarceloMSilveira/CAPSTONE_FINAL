@@ -9,7 +9,7 @@
         <div class="wholeApp">
             <div class="header">
                 <div class="mainHeader">Travel planner</div>
-                <div class="bottonHeader">My Trips:</div>
+                <div class="bottonHeader" id="myTrip">My Trip:</div>
             </div>
             <div class="main">
                 <div class="mainLeft">
@@ -19,20 +19,24 @@
                   </div>
                 </div>
                 <div class="mainRight">
-                    <p>MY NEXT TRIP - WHERE & WHEN</p>
+                    <p class="rightHeader">MY NEXT TRIP - WHERE & WHEN</p>
                     <div class="inputData">
                       <label> City:
                           <input type="text" id="city" placeholder="Enter The city name">
                       </label> 
-                      <label>When:
+                      <label>Arrival:
                           <input type="date" id="tripDate">
                       </label>
-                      <button id="generate" type = "submit"> Generate </button>
+                      <label>Departure:
+                        <input type="date" id="backDate">
+                      </label>
+                      <button id="generate" class="inputBut" type = "submit"> Let's go! </button>
                     </div>
                 </div>
             </div>
             <div class="botton">
                 <div id="when">When?</div>
+                <div id="howLong">How many days?</div>
                 <div id ="result">Forecast?</div>
             </div>
         </div>

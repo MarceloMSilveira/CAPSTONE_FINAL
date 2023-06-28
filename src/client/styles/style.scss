@@ -5,9 +5,10 @@ body {
 label, input, button{
     font-weight: bold;
     border: none;
+    font-size: 1em;
 }
 span{
-    text-shadow: 2px 2px 4px rgba(238, 234, 5, 0.897);
+    font-style: italic;
 }
 .wholeApp{
     margin: 3px;
@@ -67,34 +68,43 @@ span{
     background-image: url('../media/venice.jpg');
     background-size: cover;
     background-position: center;
+    margin-bottom: 10px;
 }
 
 .userNotes{
-    
+
 }
 .mainRight{
+    font-size: 1.2em;
     grid-area: "mainRight";
     display: flex;
     flex-direction: column;
     align-items: center;   
-    justify-content: flex-start;
+    justify-content:left;
     gap: 5px; 
+}
+.rightHeader{
+    font-size: 1.2em;
 }
 
 .botton{
     font-family: Montserrat;
     font-weight: bold;
     background-color:lightgray;
-    padding: 1.5em;
 }
 
 .inputData{
     font-family: Montserrat;
     display: flex;
     flex-direction: column;
-    align-self: left;
-    justify-content: left;
-    gap: 5px;
+    align-items: left;
+    //align-self: left;
+    //justify-content: left;
+    gap: 15px;
+}
+
+.inputBut{
+    align-self: center;
 }
 
 
