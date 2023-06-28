@@ -103,10 +103,11 @@ function getImage(place,pixabayResponse) {
 
 function validateWebURL (pixabayResponse,numberOfImg){
     const randomImgIndex = Math.floor(Math.random() * (numberOfImg) + 1);
-    while (!(pixabayResponse.hits[randomImgIndex-1].webformatURL)) {
-        randomImgIndex = Math.floor(Math.random() * (numberOfImg) + 1)
-    }
-    return randomImgIndex-1;
+    console.log(`${numberOfImg} hits found, ${randomImgIndex-1} choosed!`)
+    if (!(pixabayResponse.hits[randomImgIndex-1].webformatURL)) {
+        validateWebURL (pixabayResponse,numberOfImg)
+    } else
+        return randomImgIndex-1;
 }
 
 function unknowCity(cityUTF8){
