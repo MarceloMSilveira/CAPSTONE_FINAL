@@ -105,8 +105,31 @@ span{
 
 .inputBut{
     align-self: center;
+    background-color: #DB1F48;
+    color: #fff;
+    border-radius: 15px;
+    transition: background-color 1s;
 }
 
+.inputBut:hover {
+    background-color: #004369;
+}
+  
+.inputBut:focus,
+.inputBut:active {
+    background-color: black;
+    transition: none;
+}
+
+#changeImg{
+    border-radius: 15px;
+    transition: background-color 1s;
+}
+
+#changeImg:hover {
+    color: khaki;
+    background-color: grey;
+}
 
 @media (min-width: 600px) and (max-width: 1200px){
     .main{
