@@ -1,1 +1,1 @@
-{'preset' : ['@babel/preset-env', {targets: {node: 'current'}}]}
+{'preset' : ['@babel/preset-env']}
