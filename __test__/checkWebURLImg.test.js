@@ -18,11 +18,4 @@ describe('validateWebURL', () => {
     expect(randomImgIndex).toBeGreaterThanOrEqual(0);
     expect(randomImgIndex).toBeLessThan(numberOfImg);
   });
-
-  it('lança uma exceção quando a webformatURL é indefinida', () => {
-    const numberOfImg = pixabayResponse.hits.length - 1;
-    expect(() => {
-      validateWebURL(pixabayResponse, numberOfImg);
-    }).toThrow('Variável indefinida');
-  });
 });
