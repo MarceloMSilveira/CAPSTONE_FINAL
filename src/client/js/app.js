@@ -92,31 +92,13 @@ function getImage(place,pixabayResponse) {
     // URL of image link to pixabayResp
     const numberOfImg = pixabayResponse.total;
     
-    const randomImgIndex = validateWebURL(pixabayResponse,numberOfImg)
+    const randomImgIndex = Client.validateWebURL(pixabayResponse,numberOfImg)
     
     console.log(`Nr of img of ${place}: ${numberOfImg}. Index of choosed img: ${randomImgIndex}`)
     const imgURL = pixabayResponse.hits[randomImgIndex].webformatURL;
     imgElement.style.backgroundImage = `url(${imgURL})`;
     imgElement.ariaLabel = `image of ${place}`
     document.getElementById('myTrip').innerHTML = `Take a look at ${place}:`
-}
-
-function validateWebURL (pixabayResponse,numberOfImg){
-    try {
-        const randomImgIndex = Math.floor(Math.random() * numberOfImg);
-        console.log(`${numberOfImg} hits found, ${randomImgIndex} chosen!`);
-    
-        if (pixabayResponse.hits[randomImgIndex].webformatURL === undefined) {
-          throw new Error('Variável indefinida');
-        }
-    
-        return randomImgIndex;
-      } catch (error) {
-        // Trate a exceção aqui, por exemplo, exiba uma mensagem de erro ou execute alguma ação alternativa
-        console.log('Ocorreu um erro:', error.message);
-        // Você pode chamar a função novamente para tentar encontrar um valor válido
-        return validateWebURL(pixabayResponse, numberOfImg);
-      }
 }
 
 function unknowCity(cityUTF8){
@@ -129,7 +111,7 @@ function unknowCity(cityUTF8){
     })
     .catch(error => console.log(error));
 }
-
+/*
 const postData = async ( url = '', data = {})=>{
     console.log(data);
     const response = await fetch(url, {
@@ -150,20 +132,7 @@ const postData = async ( url = '', data = {})=>{
         console.log("error", error);
     }
 };
-
-const upDateUI = async ()=>{
-    const dataRecieved = await fetch(`${serverURL}/all`);
-    try {
-        const response = await dataRecieved.json();
-        document.getElementById('date').textContent = response.date;
-        document.getElementById('temp').textContent = response.temp;
-        document.getElementById('content').textContent = response.userResp;
-        document.getElementById('cityName').textContent = response.cityName;
-    }
-    catch (error){
-        console.log(error);
-    }
-}
+*/
 
 function performAction() {
     const userCity = document.getElementById('city').value;

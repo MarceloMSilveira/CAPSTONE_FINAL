@@ -1,4 +1,5 @@
 import { performAction } from "./js/app"
+import { validateWebURL } from "./js/checkWebURLImg";
 
 import "./styles/style.scss"
 
@@ -13,3 +14,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 export {performAction}
+export{validateWebURL}
