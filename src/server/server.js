@@ -39,28 +39,20 @@ app.get('/', (req,res)=> {
     res.sendFile('dist/index.html');
 })
 
-//post route
-//post route to recieve text to be analized
+//post route to acess geonames:
+
 app.post('/geonames', (req,res)=> {
-    console.log(req.body.userAsk)
-    let user_city = req.body.userAsk
-    askGeonames(user_city)
+    const user_city = req.body.userAsk
+    const geonamesURL = `http://api.geonames.org/searchJSON?q=${user_city}&maxRows=1&username=${process.env.GEONAMES_USERNAME}`
+    fetch(geonamesURL)
+    .then(resp=>resp.json())
     .then (
       (data) => {
-        console.log(`in dataPost: ${data.subjectivity}`)
+        console.log(`in dataPost after fetch Country: ${data.geonames[0].countryName}`)
         res.send(data)
       }
     )
-  })
+    .catch(error => console.log(error));
+})
 
-  const askGeonames = async (city) =>
-    {
-        const geonamesURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${process.env.GEONAMES_USERNAME}`
-        fetch(geonamesURL)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.geonames[0].countryName)})
-            //goWeatherBit(data)})
-        .catch(error => console.log(error));
-    }
-    
+      

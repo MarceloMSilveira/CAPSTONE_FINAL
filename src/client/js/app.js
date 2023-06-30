@@ -48,8 +48,8 @@ function nextWeekForecast (lat, lon) {
 
 const getGeonamesData = (city) =>
 {
-    const url = "http://localhost:8051/geonames"
-    userObj = {userAsk: city}
+    const url = "http://localhost:8091/geonames"
+    const userObj = {userAsk: city}
     const geonamesAnswer = postData(url,userObj)
     
     
