@@ -24,7 +24,7 @@ const goWeatherBit = async(data) => {
     
 }
 
-function postCurrentWeather (lat, lon) {
+async function postCurrentWeather (lat, lon) {
     const url = "http://localhost:8091/currentWeather"
     const data = {lat: lat, lon: lon}
     const postConfigObj = {
@@ -39,15 +39,13 @@ function postCurrentWeather (lat, lon) {
     const response = await fetch(url, postConfigObj)
     try {
       const newData = await response.json();
-      console.log(newData);
+      console.log(newData.data[0].weather.description);
+      const msg = `The current weather in ${newData.data[0].city_name} is ${newData.data[0].weather.description} Temperature: ${newData.data[0].temp}ºC`;
+      document.getElementById('result').innerHTML = msg;
       return newData;
     }catch(error) {
       console.log("error", error);
     }
-    .then(resp => {
-        const msg = `The current weather in ${resp.data[0].city_name} is ${resp.data[0].weather.description} Temperature: ${resp.data[0].temp}ºC`;
-        document.getElementById('result').innerHTML = msg;
-    })
 }
 
 //unfortunately it is not possible to get the weather history with the free version, so I used the forecast for the next week 
