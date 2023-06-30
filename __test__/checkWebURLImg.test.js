@@ -1,3 +1,4 @@
+
 // Importe a função que será testada
 import { validateWebURL } from "../src/client";
 

@@ -6,6 +6,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require ('cors');
 const path = require ('path')
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Start up an instance of app
 const app = express();
@@ -38,10 +40,27 @@ app.get('/', (req,res)=> {
 })
 
 //post route
-app.post('/dataPost', (req,res)=> {
+//post route to recieve text to be analized
+app.post('/geonames', (req,res)=> {
+    console.log(req.body.userAsk)
+    let user_city = req.body.userAsk
+    askGeonames(user_city)
+    .then (
+      (data) => {
+        console.log(`in dataPost: ${data.subjectivity}`)
+        res.send(data)
+      }
+    )
+  })
+
+  const askGeonames = async (city) =>
+    {
+        const geonamesURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${process.env.GEONAMES_USERNAME}`
+        fetch(geonamesURL)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.geonames[0].countryName)})
+            //goWeatherBit(data)})
+        .catch(error => console.log(error));
+    }
     
-    projectData.temp = req.body.temp;
-    projectData.date = req.body.date;
-    projectData.userResp = req.body.userResp;
-    projectData.cityName = req.body.cityName;
-})

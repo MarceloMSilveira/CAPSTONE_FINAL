@@ -46,15 +46,13 @@ function nextWeekForecast (lat, lon) {
     })
 }
 
-const getGeonamesData = async (city) =>
+const getGeonamesData = (city) =>
 {
-    const geonamesURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=marcelomsilveira`
-    fetch(geonamesURL)
-    .then(response => response.json())
-    .then(data => {
-        //data.geonames[0].countryName
-        goWeatherBit(data)})
-    .catch(error => console.log(error));
+    const url = "http://localhost:8051/geonames"
+    userObj = {userAsk: city}
+    const geonamesAnswer = postData(url,userObj)
+    
+    
 }
 
 const getPixabayData = async (userCity,cityUTF8) =>
@@ -111,6 +109,27 @@ function unknowCity(cityUTF8){
     })
     .catch(error => console.log(error));
 }
+
+async function postData ( url = '', data = {}) {
+    //console.log(data);
+    const postConfigObj = {
+        method: 'POST', 
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+       // Body data type must match "Content-Type" header        
+        body: JSON.stringify(data) 
+    }
+    const response = await fetch(url, postConfigObj)
+    try {
+      const newData = await response.json();
+      //console.log(newData.agreement);
+      return newData;
+    }catch(error) {
+      console.log("error", error);
+    }
+  }
 /*
 const postData = async ( url = '', data = {})=>{
     console.log(data);
