@@ -64,7 +64,7 @@ app.post('/currentWeather', (req,res)=> {
     .then (
       (resp) => {
         console.log(`in post current weather after fetch: ${resp.data[0].weather.description}`)
-        res.send(data)
+        res.send(resp)
       }
     )
     .catch(error => console.log(error));
