@@ -20,14 +20,30 @@ const goWeatherBit = async(data) => {
     if (diffDays>7) 
         nextWeekForecast(lat, lng)
     else 
-        currentWeather(lat, lng)
+        postCurrentWeather(lat, lng)
     
 }
 
-function currentWeather (lat, lon) {
-    const weatherBitURL = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=7dda27a7c2bf4cd0a4d3dc99beb71978`;
-    fetch (weatherBitURL)
-    .then(res => res.json())
+function postCurrentWeather (lat, lon) {
+    const url = "http://localhost:8091/currentWeather"
+    const data = {lat: lat, lon: lon}
+    const postConfigObj = {
+        method: 'POST', 
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+       // Body data type must match "Content-Type" header        
+        body: JSON.stringify(data) 
+    }
+    const response = await fetch(url, postConfigObj)
+    try {
+      const newData = await response.json();
+      console.log(newData);
+      return newData;
+    }catch(error) {
+      console.log("error", error);
+    }
     .then(resp => {
         const msg = `The current weather in ${resp.data[0].city_name} is ${resp.data[0].weather.description} Temperature: ${resp.data[0].temp}ºC`;
         document.getElementById('result').innerHTML = msg;
@@ -114,8 +130,7 @@ function unknowCity(cityUTF8){
 }
 
 async function postData ( url = '', data = {}) {
-    //console.log(data);
-    const postConfigObj = {
+  const postConfigObj = {
         method: 'POST', 
         credentials: 'same-origin',
         headers: {
@@ -133,28 +148,8 @@ async function postData ( url = '', data = {}) {
       console.log("error", error);
     }
   }
-/*
-const postData = async ( url = '', data = {})=>{
-    console.log(data);
-    const response = await fetch(url, {
-    method: 'POST', 
-    credentials: 'same-origin',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-   // Body data type must match "Content-Type" header        
-    body: JSON.stringify(data), 
-  });
-  
-    try {
-      const newData = await response.json();
-      console.log(newData.temp, newData.date, newData.userResp);
-      return newData;
-    }catch(error) {
-        console.log("error", error);
-    }
-};
-*/
+
+
 
 function performAction() {
     const userCity = document.getElementById('city').value;
