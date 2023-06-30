@@ -46,13 +46,16 @@ function nextWeekForecast (lat, lon) {
     })
 }
 
-const getGeonamesData = (city) =>
+const getGeonamesData = async (city) =>
 {
     const url = "http://localhost:8091/geonames"
     const userObj = {userAsk: city}
-    const geonamesAnswer = postData(url,userObj)
-    
-    
+    const geonamesAnswer = await postData(url,userObj)
+    try {
+        goWeatherBit(geonamesAnswer)
+    }catch(error) {
+        console.log("error", error);
+    }
 }
 
 const getPixabayData = async (userCity,cityUTF8) =>
