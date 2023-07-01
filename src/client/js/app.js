@@ -49,15 +49,28 @@ async function postCurrentWeather (lat, lon) {
 }
 
 //unfortunately it is not possible to get the weather history with the free version, so I used the forecast for the next week 
-function nextWeekForecast (lat, lon) {
-    const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=7dda27a7c2bf4cd0a4d3dc99beb71978`;
-    fetch (weatherBitURL)
-    .then(res => res.json())
-    .then(resp => {
-        const msg = `The forecast (next week) weather in ${resp.city_name} is ${resp.data[6].weather.description}, <span>HIGH: </span>${resp.data[6].high_temp} ºC <span>LOW: </span>${resp.data[6].low_temp} ºC`;
-        document.getElementById('result').innerHTML = msg;
+async function nextWeekForecast (lat, lon) {
+    const url = "http://localhost:8091/nextWeekForecast"
+    const data = {lat: lat, lon: lon}
+    const postConfigObj = {
+        method: 'POST', 
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+       // Body data type must match "Content-Type" header        
+        body: JSON.stringify(data) 
+    }
+    const response = await fetch(url, postConfigObj)
+    try {
+      const newData = await response.json();
+      console.log(newData.data[0].weather.description);
+      const msg = `The forecast (next week) weather in ${newData.city_name} is ${newData.data[6].weather.description}, <span>HIGH: </span>${newData.data[6].high_temp} ºC <span>LOW: </span>${newData.data[6].low_temp} ºC`;
+      document.getElementById('result').innerHTML = msg;
 
-    })
+    } catch(error) {
+        console.log("error", error);
+    }
 }
 
 const getGeonamesData = async (city) =>

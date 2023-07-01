@@ -63,7 +63,22 @@ app.post('/currentWeather', (req,res)=> {
     .then(res => res.json())
     .then (
       (resp) => {
-        console.log(`in post current weather after fetch: ${resp.data[0].weather.description}`)
+        console.log(`(inside post) current weather after fetch: ${resp.data[0].weather.description}`)
+        res.send(resp)
+      }
+    )
+    .catch(error => console.log(error));
+})
+
+app.post('/nextWeekForecast', (req,res)=> {
+    const lat = req.body.lat
+    const lon = req.body.lon
+    const weatherBitURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WHEATERBIT_KEY}`;
+    fetch (weatherBitURL)
+    .then(res => res.json())
+    .then (
+      (resp) => {
+        console.log(`(inside post) current weather after fetch: ${resp.data[0].weather.description}`)
         res.send(resp)
       }
     )
