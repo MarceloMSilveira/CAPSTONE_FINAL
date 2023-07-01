@@ -93,8 +93,8 @@ app.post('/pixabay', (req,res)=> {
     .then(resp=>resp.json())
     .then (
       (data) => {
-        console.log(`(inside PIXABAY post) current weather after fetch: ${resp.data[0].weather.description}`)
-        res.send(resp)
+        console.log(`(inside PIXABAY post) current weather after fetch: ${data.data[0].weather.description}`)
+        res.send(data)
       }
     )
     .catch(error => console.log(error));
