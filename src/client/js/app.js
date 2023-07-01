@@ -87,7 +87,19 @@ const getGeonamesData = async (city) =>
 
 const getPixabayData = async (userCity,cityUTF8) =>
 {
-    const pixabayURL = `https://pixabay.com/api/?key=36921349-37b715f1fda946c5428d9d405&q=${cityUTF8}+tourism&image_type=photo&category=travel`
+    const userObj = {place: cityUTF8}
+    const URL = "http://localhost:8091/pixabay"
+    const data = await postData(URL,userObj)
+    try {
+            if (data.total>0)
+                getImage(userCity,data)
+            else   
+                unknowCity(cityUTF8)
+    }
+    catch(error) {
+        console.log("error", error);
+    }
+    /*
     fetch(pixabayURL)
     .then(response => response.json())
     .then(
@@ -99,6 +111,7 @@ const getPixabayData = async (userCity,cityUTF8) =>
         }
     )
     .catch(error => console.log(error));
+    */
 }
 
 function getCountryImage (countryName) {
@@ -129,15 +142,16 @@ function getImage(place,pixabayResponse) {
     document.getElementById('myTrip').innerHTML = `Take a look at ${place}:`
 }
 
-function unknowCity(cityUTF8){
-    const geonamesURL = `http://api.geonames.org/searchJSON?q=${cityUTF8}&maxRows=1&username=marcelomsilveira`
-    fetch(geonamesURL)
-    .then(response => response.json())
-    .then(data => {
-        const countryName = data.geonames[0].countryName;
-        getCountryImage(countryName)        
-    })
-    .catch(error => console.log(error));
+async function unknowCity(cityUTF8){
+    const url = "http://localhost:8091/geonames"
+    const userObj = {userAsk: cityUTF8}
+    const geonamesAnswer = await postData(url,userObj)
+    try {
+        const countryName = geonamesAnswer.geonames[0].countryName;
+        getCountryImage(countryName)
+    }catch(error) {
+        console.log("error", error);
+    }
 }
 
 async function postData ( url = '', data = {}) {

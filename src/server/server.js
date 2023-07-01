@@ -85,4 +85,17 @@ app.post('/nextWeekForecast', (req,res)=> {
     .catch(error => console.log(error));
 })
 
-      
+//post route to pixabay
+app.post('/pixabay', (req,res)=> {
+    const place = req.body.place
+    const pixabayURL = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=${place}+tourism&image_type=photo&category=travel`
+    fetch(pixabayURL)
+    .then(resp=>resp.json())
+    .then (
+      (data) => {
+        console.log(`(inside PIXABAY post) current weather after fetch: ${resp.data[0].weather.description}`)
+        res.send(resp)
+      }
+    )
+    .catch(error => console.log(error));
+})
