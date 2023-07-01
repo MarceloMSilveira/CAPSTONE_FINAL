@@ -99,31 +99,19 @@ const getPixabayData = async (userCity,cityUTF8) =>
     catch(error) {
         console.log("error", error);
     }
-    /*
-    fetch(pixabayURL)
-    .then(response => response.json())
-    .then(
-        data => { 
-            if (data.total>0)
-                getImage(userCity,data)
-            else   
-                unknowCity(cityUTF8)
-        }
-    )
-    .catch(error => console.log(error));
-    */
+    
 }
 
-function getCountryImage (countryName) {
-    const pixabayURL = `https://pixabay.com/api/?key=36921349-37b715f1fda946c5428d9d405&q=${countryName}+tourism&image_type=photo&category=travel`
-    fetch(pixabayURL)
-    .then(response => response.json())
-    .then(
-        data => { 
-            getImage(countryName,data)    
-        }
-    )
-    .catch(error => console.log(error))
+async function getCountryImage (countryName) {
+    const userObj = {place: countryName}
+    const URL = "http://localhost:8091/pixabay"
+    const data = await postData(URL,userObj)
+    try {
+          getImage(countryName,data)      
+    }
+    catch(error) {
+        console.log("error", error);
+    }
 }
 
 function getImage(place,pixabayResponse) {
