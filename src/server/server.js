@@ -48,7 +48,7 @@ app.post('/geonames', (req,res)=> {
     .then(resp=>resp.json())
     .then (
       (data) => {
-        console.log(`in dataPost after fetch Country: ${data.geonames[0].countryName}`)
+        console.log(`in dataPost after fetch Country: ${data}`)
         res.send(data)
       }
     )
